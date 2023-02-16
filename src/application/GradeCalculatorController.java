@@ -41,11 +41,21 @@ public class GradeCalculatorController {
     	
     	// This for checking whether the user is inputing a numeric value or not.
     	
-    	boolean validProjectGrade = true;
+    	boolean validProjectGrade = true;  // Here validProjectGrade is a Flag Variable
+    	int decimalflag = 0; // Here decimalflag is flag variable
     	for (char c : valueEntered.toCharArray()) {
-    		if (c=='%' || c=='@' || c=='!' || c=='?' || c=='a' || c=='b' || c=='c' || c=='d' || c=='e' || c=='f' || c=='g') {
+    		if (!Character.isDigit(c) && c!= '.' && c!='-') {
     			validProjectGrade = false;
-    			projectErrorLabel.setText("Don't include the character: " + c + "Project grade should be percentage. ");
+    			projectErrorLabel.setText("Don't include the character:  " + c + " Project grade should be percentage. ");
+    		}
+    		// Checks if Character 'c' is a digit.
+    		if (c == '.') {
+    			decimalflag += 1;
+    		} 
+    		// Turn validProjectGrade variable into false if there is more than 1 decimals.
+    		if (decimalflag>1) {
+    			validProjectGrade = false;
+    			projectErrorLabel.setText("Don't include the character '.' more than once");
     		}
     	}
     	// Default project grade is 0. If valid number entered, convert user input to floating point number.
@@ -54,6 +64,13 @@ public class GradeCalculatorController {
     	if (validProjectGrade) {
     		projectGrade = Double.parseDouble(valueEntered);
     	}
+    	
+    	// Check if project Grade is a valid percentage Grade. If not, reset to default grade of 0. 
+    	if (projectGrade < 0 || projectGrade > 100) {
+    		projectErrorLabel.setText("Project Grade should be between 0% and 100%. Invalid project grade:" + projectGrade);
+    		projectGrade = 0;
+    	}
+    	
     	return projectGrade;
     }
 
@@ -61,7 +78,7 @@ public class GradeCalculatorController {
     /**
      * Calculate all project Grade, Quiz Grade , Required/Optional Coding Challenge Grades into a Final
      * Single Grade.
-     * @param event Takes input from the user in the GUI interface.
+     * @param event Takes input from the user in the GUI interface and then trigger the calculation.
      */
     @FXML
     void calculateGrade(ActionEvent event) {
@@ -72,11 +89,10 @@ public class GradeCalculatorController {
     	// Check if user entered a percentage grade. If not, display error message and don't include project grade in course grade.
     	
     	double projectGrade = getProjectGrade(projectValueEntered);
-    	if (projectGrade < 0 || projectGrade > 100) {
-    		projectErrorLabel.setText("Project Grade should be between 0% and 100%. Invalid project grade:" + projectGrade);
-    	} else {
-    		courseGrade = courseGrade + projectGrade * 50/100;
-    	}
+    	// Include Project Grade in Course Grade
+
+    	courseGrade = courseGrade + projectGrade * 50/100;
+    	
     	System.out.println("Project grade " + projectGrade + " Course grade so far: " + courseGrade);
     	
     	double quizGrade = quizSlider.getValue();
