@@ -30,7 +30,7 @@
 
             <Label text="This should cause a merge conflict" />
             
-            <Label fx:id="projectErrorLabel" text="Error message goes here" textFill="RED">
+            <Label fx:id="projectErrorLabel" text="Error message goes here" textFill="RED"/>
 
             <Label fx:id="projectErrorLabel" text="" textFill="RED">
 
