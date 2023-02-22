@@ -99,7 +99,7 @@
       
       <HBox prefHeight="50.0" prefWidth="200.0">
          <children>
-            <Label text="Number of Quizzes Completed">
+            <Label text="Number of Required Quizzes Completed">
             	<HBox.margin>
                   <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                 </HBox.margin>
@@ -116,15 +116,13 @@
             		<Integer fx:value="7" />
             		<Integer fx:value="8" />
             		<Integer fx:value="9" />
-            		<Integer fx:value="10" /> 
+            		<Integer fx:value="10" />    
             		<Integer fx:value="10" />
             		<Integer fx:value="11" /> 
             		<Integer fx:value="12" />
             		<Integer fx:value="13" />
             		<Integer fx:value="14" />
-            		<Integer fx:value="15" />  
-
-             		
+            		<Integer fx:value="15" />          		
             		</FXCollections>
             	</items>
             </ChoiceBox>
@@ -134,6 +132,41 @@
             <Insets left="10.0" top="50.0" />
          </VBox.margin>
       </HBox>
+      
+      
+            
+            
+            
+            <HBox prefHeight="50.0" prefWidth="200.0">
+         <children>
+            <Label text="Number of Optional Quizzes Completed">
+            	<HBox.margin>
+                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                </HBox.margin>
+            </Label>
+            <ChoiceBox fx:id="optinalQuizzesChoiceBox" prefWidth="150.0">
+            	<items>
+            		<FXCollections fx:factory="observableArrayList">
+            		<Integer fx:value="1" />
+            		<Integer fx:value="2" />
+            		<Integer fx:value="3" />
+            		<Integer fx:value="4" />
+            		<Integer fx:value="5" />            		
+            		</FXCollections>
+            	</items>
+            </ChoiceBox>
+            <Button mnemonicParsing="false" onAction="#getOptionalQuizGrades" text="Enter Quiz Grade"/>
+         </children>
+         <VBox.margin>
+            <Insets left="10.0" top="50.0" />
+         </VBox.margin>
+      </HBox>
+      
+      
+      
+      
+      
+      
       <Button mnemonicParsing="false" onAction="#calculateGrade" text="Calculate Grade">
          <VBox.margin>
             <Insets left="130.0" top="30.0" />

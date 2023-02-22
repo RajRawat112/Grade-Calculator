@@ -17,6 +17,7 @@ import javafx.stage.Stage;
 public class GradeCalculatorController {
 	Stage applicationStage;
 	double averageQuizGrade = 0.0;
+	double averageOptionalQuizGrade = 0.0;
 
     @FXML
     private ChoiceBox<Integer> codingcChoiceBox;
@@ -26,6 +27,9 @@ public class GradeCalculatorController {
     
     @FXML
     private ChoiceBox<Integer> quizzesChoiceBox;
+    
+    @FXML
+    private ChoiceBox<Integer> optinalQuizzesChoiceBox;
 
     @FXML
     private TextField projectGradeTextfield;
@@ -117,6 +121,55 @@ public class GradeCalculatorController {
     	applicationStage.setScene(quizScene);
     }
     
+    
+    
+ 
+    void calculateOptinalQuizGrade(Scene MainScene, ArrayList<TextField> quizGradeTextfields1) {
+    	averageOptionalQuizGrade = 0.0;
+    	for (TextField textfield : quizGradeTextfields1) {
+    		averageOptionalQuizGrade += Double.parseDouble(textfield.getText());
+    	}
+    	averageOptionalQuizGrade = averageOptionalQuizGrade / quizGradeTextfields1.size();
+    	applicationStage.setScene(MainScene);
+    }  
+    
+    
+    
+    
+    
+
+    @FXML
+    void getOptionalQuizGrades(ActionEvent event) {
+    	Scene mainScene = applicationStage.getScene();
+    	int numberOfQuizzes1 = optinalQuizzesChoiceBox.getValue();
+    	int rowCounter1 = 0;
+    	VBox allRows1 = new VBox();
+    	ArrayList<TextField> quizTextFields1 = new ArrayList<TextField>();
+    	while (rowCounter1 < numberOfQuizzes1) {
+    		rowCounter1++;
+        	
+    		HBox quizRow = new HBox();
+        	Label quizLabel1 = new Label("Optinal Quiz" + rowCounter1 + "grade");
+        	TextField quizGradeTextfield1 = new TextField();
+        	quizTextFields1.add(quizGradeTextfield1);
+
+        	quizRow.getChildren().addAll(quizLabel1,quizGradeTextfield1);
+        	allRows1.getChildren().add(quizRow);
+    	}
+    	
+    	Button doneButton = new Button("Done");
+    	doneButton.setOnAction(doneEvent -> calculateOptinalQuizGrade(mainScene,quizTextFields1));
+    	allRows1.getChildren().add(doneButton);
+    	Scene quizScene = new Scene(allRows1);
+    	applicationStage.setScene(quizScene);
+    }
+    
+    
+    
+    
+    
+    
+    
     /**
      * Calculate all project Grade, Quiz Grade , Required/Optional Coding Challenge Grades into a Final
      * Single Grade.
@@ -138,8 +191,12 @@ public class GradeCalculatorController {
     	System.out.println("Project grade " + projectGrade + " Course grade so far: " + courseGrade);
     	
     	double quizGrade = averageQuizGrade;
-    	courseGrade = courseGrade + (quizGrade * 2.5);
+    	courseGrade = courseGrade + (quizGrade * 1.25);
     	System.out.println("Quiz grade " + quizGrade + " Course grade so far: " + courseGrade);
+    	
+    	double optionalQuizGrade = averageOptionalQuizGrade;
+    	courseGrade = courseGrade + (optionalQuizGrade * 1.25);
+    	System.out.println("Optinal Quiz grade " + optionalQuizGrade + " Course grade so far: " + courseGrade);
     	
     	int codingChallengesPassed = codingcChoiceBox.getValue();
     	courseGrade = courseGrade + (codingChallengesPassed * 1.25);
