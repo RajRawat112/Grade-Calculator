@@ -35,6 +35,11 @@ public class GradeCalculatorController {
     private TextField projectGradeTextfield;
     
     @FXML
+    private TextField avgRequiredQuizGrade;
+    
+    @FXML
+    private TextField avgOptionalQuizGrade;
+    @FXML
     private Label courseGradeLabel;
     
     @FXML
@@ -47,8 +52,9 @@ public class GradeCalculatorController {
      * @param valueEntered the value entered as the project grade
      * @return the double value of valueEntered if it is numeric, a valid percentage grade not % symbol
      *  and 0 otherwise.
+     *  
      */
-    
+   
     double getProjectGrade(String valueEntered) {
     	
     	// This for checking whether the user is inputing a numeric value or not.
@@ -90,9 +96,12 @@ public class GradeCalculatorController {
     	averageQuizGrade = 0.0;
     	for (TextField textfield : quizGradeTextfields) {
         	averageQuizGrade += Double.parseDouble(textfield.getText());
+        	
+
     	}
     	averageQuizGrade = averageQuizGrade / quizGradeTextfields.size();
     	applicationStage.setScene(MainScene);
+    	avgRequiredQuizGrade.setText(String.format(" ",averageQuizGrade));
     }
 
     @FXML
@@ -119,6 +128,7 @@ public class GradeCalculatorController {
     	allRows.getChildren().add(doneButton);
     	Scene quizScene = new Scene(allRows);
     	applicationStage.setScene(quizScene);
+    	applicationStage.setTitle("Required Quizzes");
     }
     
     
@@ -128,6 +138,8 @@ public class GradeCalculatorController {
     	averageOptionalQuizGrade = 0.0;
     	for (TextField textfield : quizGradeTextfields1) {
     		averageOptionalQuizGrade += Double.parseDouble(textfield.getText());
+
+    		
     	}
     	averageOptionalQuizGrade = averageOptionalQuizGrade / quizGradeTextfields1.size();
     	applicationStage.setScene(MainScene);
@@ -162,6 +174,7 @@ public class GradeCalculatorController {
     	allRows1.getChildren().add(doneButton);
     	Scene quizScene = new Scene(allRows1);
     	applicationStage.setScene(quizScene);
+    	applicationStage.setTitle("Optional Required Quizzes");
     }
     
     

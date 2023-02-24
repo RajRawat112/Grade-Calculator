@@ -8,7 +8,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.collections.FXCollections?>
 
-<VBox prefHeight="646.0" prefWidth="881.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.GradeCalculatorController">
+<VBox prefHeight="722.0" prefWidth="881.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.GradeCalculatorController">
    <children>
       <HBox prefHeight="40.0">
          <children>
@@ -97,7 +97,7 @@
          </VBox.margin>
       </HBox>
       
-      <HBox prefHeight="50.0" prefWidth="200.0">
+      <HBox prefHeight="60.0" prefWidth="200.0">
          <children>
             <Label text="Number of Required Quizzes Completed">
             	<HBox.margin>
@@ -126,11 +126,26 @@
             		</FXCollections>
             	</items>
             </ChoiceBox>
-            <Button mnemonicParsing="false" onAction="#getQuizGrades" text="Enter Quiz Grade"/>
+            <Button mnemonicParsing="false" onAction="#getQuizGrades" text="Enter Quiz Grade" />
          </children>
          <VBox.margin>
             <Insets left="10.0" top="50.0" />
          </VBox.margin>
+      </HBox>
+      <HBox prefHeight="47.0" prefWidth="900.0">
+         <children>
+            <Label text="Average Reuired Quiz Grade">
+               <padding>
+                  <Insets left="20.0" top="30.0" />
+               </padding>
+            </Label>
+            <Label text="  " />
+            <TextField fx:id="avgRequiredQuizGrade">
+               <HBox.margin>
+                  <Insets top="20.0" />
+               </HBox.margin>
+            </TextField>
+         </children>
       </HBox>
       
       
@@ -155,12 +170,26 @@
             		</FXCollections>
             	</items>
             </ChoiceBox>
-            <Button mnemonicParsing="false" onAction="#getOptionalQuizGrades" text="Enter Quiz Grade"/>
+            <Button mnemonicParsing="false" onAction="#getOptionalQuizGrades" text="Enter Quiz Grade" />
          </children>
          <VBox.margin>
             <Insets left="10.0" top="50.0" />
          </VBox.margin>
       </HBox>
+      <HBox prefHeight="63.0" prefWidth="881.0">
+         <children>
+            <Label text="Average Optional Quiz Grade">
+               <padding>
+                  <Insets left="20.0" top="20.0" />
+               </padding>
+            </Label>
+            <Label text="   " />
+            <TextField fx:id="avgOptionalQuizGrade">
+               <HBox.margin>
+                  <Insets top="20.0" />
+               </HBox.margin>
+            </TextField>
+         </children></HBox>
       
       
       
