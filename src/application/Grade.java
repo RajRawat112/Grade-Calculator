@@ -54,7 +54,7 @@ public class Grade {
     	
     	// Check if project Grade is a valid percentage Grade. If not, reset to default grade of 0. 
     	if (value < 0 || value > maxValue) {
-    	errorMessage = String.format("Grade should be between 0% and 100%. Invalid grade: "+ value);
+    		errorMessage = String.format("Grade should be between 0 and %d. Invalid grade: %.02f", maxValue, value);
     	value = 0;
     	}
     	
