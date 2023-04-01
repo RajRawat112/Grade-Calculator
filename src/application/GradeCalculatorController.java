@@ -50,6 +50,12 @@ public class GradeCalculatorController {
     
     private Label optQuizGradeErrorLabel;
     
+    @FXML
+    private Label requiredQuizErrorLabel;
+    
+    @FXML
+    private Label optionalQuizErrorLabel;
+    
     /**
      * Check if the value provided by the user is valid or not. If the value is numeric and a percentage
      * between (0 and 100). If Valid, a double of equivalent value is returned, if not, this method 
@@ -64,7 +70,7 @@ public class GradeCalculatorController {
     	boolean noErrors1 = true;
     	double weightOfEachOptQuiz = 1.0/quizGradeTextFields.size();
     	for  (TextField textfield : quizGradeTextFields) {
-    		Grade optQuizGrade = new Grade(0,100,weightOfEachOptQuiz);
+    		Grade optQuizGrade = new Grade(0,100,weightOfEachOptQuiz); 
     		String errorMessage = optQuizGrade.setValue(textfield.getText());
     		if (!errorMessage.equals("")) {
     			noErrors1 = false;
@@ -198,6 +204,8 @@ public class GradeCalculatorController {
 
     	
     	Grade quizGrade = new Grade(avgReqQuizGrade, 10, 0.125);
+
+    	
 
     	
     	Grade optQuizGrade = new Grade(avgOptQuizGrade, 10, 0.125);
